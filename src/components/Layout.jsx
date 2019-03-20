@@ -2,20 +2,35 @@ import { graphql, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Box, Flex, Heading, Provider as RebassProvider, Text } from 'rebass';
+import { Box, Flex, Provider as RebassProvider } from 'rebass';
 import { injectGlobal } from 'styled-components';
+import Topbar from './Topbar';
 import Footer from './Footer';
-import Header from './Header';
+
 
 injectGlobal`
-  body {
+  body, div, p {
     margin: 0;
     text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  .wrapper {
+    min-height: inherit;
+  }
+  picture: {
+    z-index: -1;
   }
 `;
 
-const Layout = ({ children }) => (
-  <RebassProvider is={Flex} flexDirection="column" css={{ minHeight: '100vh' }}>
+const Layout = ({ children, ...props }) => (
+  <RebassProvider
+    is={Flex}
+    bg="dimgray"
+    fontFamily="monospace"
+    flexDirection="column"
+    css={{ minHeight: '100vh' }}
+    justifyContent="space-between"
+  >
     <StaticQuery
       query={graphql`
         {
@@ -28,24 +43,40 @@ const Layout = ({ children }) => (
         }
       `}
       render={data => (
-        <Helmet
-          titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-          defaultTitle={data.site.siteMetadata.title}
-        >
-          <html lang={data.site.siteMetadata.language} />
-        </Helmet>
+        <div className="wrapper">
+
+          <Helmet
+            titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+            defaultTitle={data.site.siteMetadata.title}
+          >
+            <html lang={data.site.siteMetadata.language} />
+          </Helmet>
+
+          <Flex
+            flexDirection='column'
+            justifyContent="space-between"
+            css={{ minHeight: 'inherit' }}
+          >
+
+            <div css={{ position: 'sticky', top: 0, zIndex: '100' }}>
+              <Topbar />
+            </div>
+
+            <Box >
+              {children}
+            </Box>
+
+            <Box >
+              <Footer />
+            </Box>
+
+          </Flex>
+
+        </div>
       )}
     />
 
-    <Header brand={<Heading>Gatsby</Heading>} />
 
-    <Box is="main" flex={1}>
-      {children}
-    </Box>
-
-    <Footer>
-      <Text align="center">Sticky footer</Text>
-    </Footer>
   </RebassProvider>
 );
 
