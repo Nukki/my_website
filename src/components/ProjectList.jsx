@@ -18,7 +18,7 @@ const ProjectList = (props) => (
         <Project
           name="Melomania"
           img={data.melomania.childImageSharp.fluid}
-          github="will fill later"
+          github="https://github.com/Nukki/Melomania"
           live="https://melomania-game.herokuapp.com/"
           tech="Javasctipt/ES6, React.js, Redux, Apple Music API, Web Audio API"
           description="A song guessing game with over 800 songs of different genres."
@@ -27,14 +27,14 @@ const ProjectList = (props) => (
           name="Llama"
           img={data.llama.childImageSharp.fluid}
           github="https://github.com/Nukki/Llama"
-          demo="youtube"
+          demo="https://www.youtube.com/watch?v=6R45uegg110"
           tech="Javasctipt/ES6, React Native, Cocoapods, Node.js, Socket.io, MongoDB, APNs, Google Maps API"
           description="This app is aimed at improving gender equality in public. Unsafe person teams up with volunteers to walk together on campus, in the city or a music festival. GenHack hackathon entry."
         />
         <Project
           img={data.attendone.childImageSharp.fluid}
           github="https://github.com/Nukki/attenDONE"
-          demo="youtube"
+          demo="https://www.youtube.com/watch?v=ULR1QrEeLk8"
           tech="Java, Android, NFC"
           description="Digital replacement for role call in class. An app for professors that makes attendence sheets and reads Student ID NFC tag to mark them present. Honorable Mentions at CUNYhack Spring'17 hackathon."
         />
